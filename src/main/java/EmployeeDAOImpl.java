@@ -16,7 +16,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
-
     @Override
     public Employee readById(int id) {
         return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Employee.class, id);
@@ -30,11 +29,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return users;
     }
 
-
     @Override
-    public void changingAnObjectById(int id, String firstName) {
-        Employee employee = readById(id);
-        employee.setFirstName(firstName);
+    public void update(Employee employee) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.update(employee);
@@ -44,11 +40,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void deleteById(int id) {
-        Employee employee = readById(id);
+    public void delete(Employee employee) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.delete(id);
+            session.delete(employee);
             transaction.commit();
 
         }

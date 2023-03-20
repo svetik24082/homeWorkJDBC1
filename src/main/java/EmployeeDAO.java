@@ -11,8 +11,8 @@ public interface EmployeeDAO {
 
     List<Employee> readAll();//пол всех объектов
 
-    void changingAnObjectById(int id, String firstName); //изменение объекта по id
+    void update(Employee employee); //изменение объекта
 
-    void deleteById(int id);//удаление по id
+    void delete(Employee employee);//удаление
 
 }

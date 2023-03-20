@@ -17,14 +17,15 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private int city;
+    @ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
 
     public Employee() {
     }
 
     public Employee(String firstName, String lastName,
-                    String gender, int age, int city) {
+                    String gender, int age, City city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -34,7 +35,7 @@ public class Employee {
 
     public Employee(int id, String firstName,
                     String lastName, String gender,
-                    int age, int city) {
+                    int age, City city) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -83,11 +84,11 @@ public class Employee {
         this.age = age;
     }
 
-    public int getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(int city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -116,6 +117,4 @@ public class Employee {
                 ", city_id='" + city + '\'' +
                 '}';
     }
-
-
 }
